@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UnstableMC — Anarchy, 24/7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#07070a;--ink:#f4efe6;--mut:#a39d90;--gold:#f0c36a;--line:#ffffff1a;--glass:#ffffff0d;--red:#e5484d;--blue:#4f8cff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f1e7;--ink:#14110d;--mut:#6b6458;--gold:#a9741a;--line:#00000022;--glass:#0000000a}}
+:root[data-theme="dark"]{--bg:#07070a;--ink:#f4efe6;--mut:#a39d90;--gold:#f0c36a;--line:#ffffff1a;--glass:#ffffff0d}
+:root[data-theme="light"]{--bg:#f6f1e7;--ink:#14110d;--mut:#6b6458;--gold:#a9741a;--line:#00000022;--glass:#0000000a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+h1,h2,h3,em{font-family:'Cormorant Garamond',Georgia,serif}
+em{color:var(--gold);font-style:italic}
+p{color:var(--mut);max-width:52ch;margin:.6em 0}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw 14px 56px;background:color-mix(in srgb,var(--bg) 75%,transparent);backdrop-filter:blur(10px)}
+.nav b{font:italic 600 24px 'Cormorant Garamond',Georgia,serif}.nav nav{display:flex;gap:22px;font-size:13px}.nav a{color:var(--mut);text-decoration:none}
+.pill{border:1px solid var(--gold);color:var(--gold)!important;border-radius:99px;padding:6px 16px;box-shadow:0 0 18px #f0c36a33}
+.guide{position:fixed;left:26px;top:0;bottom:0;width:1px;background:linear-gradient(var(--red),#e5484d33);z-index:5;pointer-events:none}
+.guide i{position:absolute;left:-3px;top:0;width:7px;height:7px;border-radius:50%;background:var(--red)}
+#fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1}
+.hero{position:relative;padding:12vh 5vw 8vh 56px;overflow:hidden}
+.big{position:relative;margin:0 -5vw 4vh -56px;text-align:center;font:400 clamp(90px,25vw,320px)/.95 'Bebas Neue',Impact,sans-serif;color:transparent;-webkit-text-stroke:1.5px var(--gold);letter-spacing:.02em;user-select:none}
+.nav.rv{transform:none}
+.hl{position:relative;max-width:560px}
+.lab,.eyebrow{font:500 11px 'JetBrains Mono',monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0}
+h1{font-size:clamp(52px,10vw,104px);line-height:1;margin:.1em 0;font-weight:600;color:var(--gold)}h1 em{color:var(--ink)}
+h2{font-size:clamp(36px,6vw,64px);line-height:1.05;margin:.3em 0;font-weight:600}
+.btn{display:inline-flex;align-items:center;background:var(--gold);color:#1a1307;border:0;border-radius:99px;padding:12px 22px;font:600 14px Inter,sans-serif;cursor:pointer}
+.stats{display:flex;gap:12px;margin-top:22px}.stat{border:1px solid var(--red);padding:8px 14px;min-width:96px}
+.stat b{display:block;font:600 32px/1 'Cormorant Garamond',Georgia,serif}.stat small{font:10px 'JetBrains Mono',monospace;color:var(--mut)}
+.roles{position:absolute;right:5vw;bottom:8vh;display:grid;gap:2px;text-align:right;font:italic 600 clamp(22px,3vw,34px)/1.35 'Cormorant Garamond',Georgia,serif}
+.roles>span{padding:0 10px;opacity:.5;transition:.3s}.roles>.on{opacity:1;color:var(--gold);outline:1px solid var(--blue);background:#4f8cff22}
+.hud{position:relative;margin:0 0 3vh;text-align:right;font:11px/1.8 'JetBrains Mono',monospace;color:var(--mut)}.rec{color:var(--red);animation:bl 1.2s steps(2) infinite}
+@keyframes bl{50%{opacity:.2}}
+.strip{border-block:1px solid var(--line);background:var(--glass);overflow:hidden;white-space:nowrap;padding:18px 0}
+.strip div{display:inline-block;animation:mq 30s linear infinite;font:italic 600 clamp(24px,3.4vw,38px) 'Cormorant Garamond',Georgia,serif}
+.strip div>span,.strip div>s{margin:0 22px}.strip div>s{color:var(--gold);text-decoration:none;font-style:normal}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sec{padding:14vh 5vw 8vh 56px}
+.list{display:grid;gap:20px;margin-top:28px;max-width:640px}.list>div{display:grid;grid-template-columns:40px 1fr}
+.list b{font:600 24px 'Cormorant Garamond',Georgia,serif;color:var(--gold)}.list h3{margin:0;font:600 18px Inter,sans-serif}.list p{margin:2px 0 0}
+.panel{margin-top:28px;background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:16px;backdrop-filter:blur(8px)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{border:1px solid var(--line);border-radius:12px;padding:20px;transition:.3s}.card.hot{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
+.card h3{margin:.2em 0;font:italic 600 28px 'Cormorant Garamond',Georgia,serif}.card small{font:10px 'JetBrains Mono',monospace;color:var(--mut)}
+.ip{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.ip code{font:500 15px 'JetBrains Mono',monospace;border:1px solid var(--line);background:var(--glass);border-radius:99px;padding:11px 18px}
+footer{padding:40px 5vw 120px 56px;color:var(--mut);font:12px 'JetBrains Mono',monospace}
+.rv{opacity:0;filter:blur(8px);transition:all .4s cubic-bezier(.2,.7,.2,1)}.rv.in{opacity:1;transform:none;filter:none}
+.ch{opacity:0}.in .ch{animation:ch .01s forwards;animation-delay:calc(var(--i)*var(--d,24ms))}@keyframes ch{to{opacity:1}}
+#ov{position:fixed;inset:0;pointer-events:none;z-index:40}
+.sel{position:absolute;display:none;border:1px solid var(--c)}
+.sel i{position:absolute;width:7px;height:7px;background:#fff;border:1px solid var(--c)}
+.sel i:nth-child(1){left:-4px;top:-4px}.sel i:nth-child(2){right:-4px;top:-4px}.sel i:nth-child(3){left:-4px;bottom:-4px}.sel i:nth-child(4){right:-4px;bottom:-4px}
+.sel b{position:absolute;left:50%;top:100%;transform:translate(-50%,7px);background:var(--c);color:#fff;font:600 10px 'JetBrains Mono',monospace;padding:1px 6px;border-radius:3px;white-space:nowrap}
+.cur{position:absolute;left:0;top:0;color:var(--c);will-change:transform;transition:opacity .6s}.cur.gone{opacity:0}
+.cur span{position:absolute;left:14px;top:14px;background:var(--c);color:#fff;font:600 11px Inter,sans-serif;padding:1px 8px;border-radius:99px;white-space:nowrap}
+.bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:50;display:flex;align-items:center;gap:12px;padding:8px 10px 8px 14px;border-radius:12px;background:#0b0b10eb;color:#e9e6df;border:1px solid #ffffff22;font:11px 'JetBrains Mono',monospace;white-space:nowrap}
+.bar i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:3px}
+.bar button{background:var(--blue);color:#fff;border:0;border-radius:6px;padding:5px 10px;font:inherit;cursor:pointer}
+.bar #rp{background:transparent;border:1px solid #ffffff44}
+@media(max-width:760px){.nav nav a:not(.pill){display:none}.cards{grid-template-columns:1fr}.roles{position:relative;right:auto;bottom:auto;text-align:left;margin-top:24px}.hud{top:11vh}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;filter:none;transition:none}.ch{opacity:1;animation:none!important}.big{animation:none;clip-path:none}.strip div,.rec{animation:none}}
+</style>
+<noscript><style>.rv,.ch{opacity:1!important;filter:none!important;clip-path:none!important}</style></noscript>
+</head>
+<body>
+<div class="guide"><i id="gi"></i></div>
+<canvas id="fx"></canvas>
+<header class="nav rv"><b>unstable·</b><nav><a href="#about">About</a><a href="#join">How to join</a><a class="pill" href="#join">Join</a></nav></header>
+<main>
+<section class="hero">
+<div class="big rv" aria-hidden="true">ANARCHY</div>
+<div class="hud rv"><span class="rec">● LIVE</span> <span id="tc">00:36:04:03</span><br>UNSTABLE SMP · 24/7</div>
+<div class="hl">
+<p class="eyebrow rv">Minecraft anarchy server</p>
+<h1 data-split>Unstable<em>MC</em></h1>
+<p class="rv">The Unstable SMP map, running around the clock. Log in at any hour and the world is already moving.</p>
+<div class="rv"><button class="btn" data-copy>play.unstablemc.net</button></div>
+<div class="stats rv"><div class="stat"><b>24/7</b><small>ALWAYS ONLINE</small></div><div class="stat"><b>SMP</b><small>UNSTABLE MAP</small></div></div>
+</div>
+<div class="roles rv"><span>Anarchy</span><span>Unstable SMP</span><span>Online 24/7</span></div>
+</section>
+<div class="strip rv"><div><span>Anarchy</span><s>✦</s><span>Unstable SMP</span><s>✦</s><span>Online 24/7</span><s>✦</s><span>Survive</span><s>✦</s><span>Your story</span><s>✦</s></div></div>
+<section class="sec" id="about">
+<p class="lab rv">02 / 03 — About</p>
+<h2 data-split>A server that <em>never</em> sleeps</h2>
+<p class="rv">UnstableMC is an anarchy server built on the Unstable SMP map. It stays up day and night, so there’s always something happening when you connect.</p>
+<div class="list">
+<div class="rv"><b>1.</b><div><h3>Anarchy</h3><p>Survival without a safety net.</p></div></div>
+<div class="rv"><b>2.</b><div><h3>Unstable SMP</h3><p>The map the whole server runs on.</p></div></div>
+<div class="rv"><b>3.</b><div><h3>Online 24/7</h3><p>The world keeps running while you’re away.</p></div></div>
+</div>
+</section>
+<section class="sec" id="join">
+<p class="lab rv">03 / 03 — Join</p>
+<h2 data-split>Join in <em>three</em> steps</h2>
+<div class="panel rv"><div class="cards">
+<div class="card"><small>STEP 01</small><h3>Open Minecraft</h3><p>Head to Multiplayer.</p></div>
+<div class="card"><small>STEP 02</small><h3>Add server</h3><p>Name it UnstableMC.</p></div>
+<div class="card"><small>STEP 03</small><h3>Paste the IP</h3><p>Hit join and spawn in.</p></div>
+</div></div>
+<div class="ip rv"><code>play.unstablemc.net</code><button class="btn" data-copy>Copy IP</button></div>
+</section>
+<footer class="rv">UnstableMC · Unstable SMP · Online 24/7</footer>
+</main>
+<div id="ov"></div>
+<div class="bar"><span><i style="background:#4f8cff"></i><i style="background:#ff5d73"></i><i style="background:#2fd5a4"></i><i style="background:#ffb454"></i></span><span id="na">4 agents</span><span id="cnt"></span><button id="tour">Building</button><button id="rp">Replay</button></div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const tg=$$('.rv,[data-split]');
+tg.forEach(el=>{let i=0;const w=n=>[...n.childNodes].forEach(c=>{if(c.nodeType==3){if(!c.textContent.trim())return;const f=document.createDocumentFragment();for(const ch of c.textContent){if(ch==' ')f.append(' ');else{const s=document.createElement('span');s.className='ch';s.style.setProperty('--i',i++);s.textContent=ch;f.append(s)}}c.replaceWith(f)}else if(c.nodeType==1&&c.id!='tc')w(c)});w(el);
+ el._n=i;el._k=[...el.querySelectorAll('.ch')];el._d=el.classList.contains('big')?60:el.hasAttribute('data-split')?20:12;el.style.setProperty('--d',el._d+'ms')});
+const mq=$('.strip div');mq.append(...[...mq.childNodes].map(x=>x.cloneNode(true)));
+let n=0,paused=false,done=false,phase=0,t0=null,go=false,lastUser=0,lastDir=0;
+const cnt=$('#cnt'),tour=$('#tour'),na=$('#na');
+const lab=()=>tour.textContent=paused?'Paused':done?'Built ✓':'Building';
+const upd=()=>{cnt.textContent=n+' / '+tg.length+' layers';lab()};
+const ov=$('#ov');
+const mkSel=c=>{const d=document.createElement('div');d.className='sel';d.style.setProperty('--c',c);d.innerHTML='<i></i><i></i><i></i><i></i><b></b>';ov.append(d);return d};
+const box=(d,l,t,w,h)=>{Object.assign(d.style,{display:'block',left:l-3+'px',top:t-3+'px',width:w+6+'px',height:h+6+'px'});d.lastChild.textContent=Math.round(w)+' × '+Math.round(h)};
+const cl=(v,a,b)=>Math.min(b,Math.max(a,v)),ease=p=>1-Math.pow(1-p,3);
+const inView=e=>{const r=e.getBoundingClientRect();return r.bottom>20&&r.top<innerHeight-90};
+const reveal=e=>{e.classList.add('in');n++;upd()};
+const A=[['Scout','#4f8cff'],['Editor','#ff5d73'],['Writer','#2fd5a4'],['Designer','#ffb454']];
+const ag=[];
+setTimeout(()=>go=true,400);
+['wheel','touchmove','keydown'].forEach(v=>addEventListener(v,()=>lastUser=performance.now(),{passive:true}));
+if(rm){tg.forEach(e=>{e.classList.add('in');e._c=1});n=tg.length;done=true;na.textContent='0 agents'}
+else A.forEach(([nm,c],i)=>{const cur=document.createElement('div');cur.className='cur';cur.style.setProperty('--c',c);cur.innerHTML='<svg width="18" height="18" viewBox="0 0 16 16"><path d="M1 1l5 14 2-6 6-2z" fill="currentColor" stroke="#fff" stroke-width=".8"/></svg><span>'+nm+'</span>';ov.append(cur);ag.push({cur,sel:mkSel(c),x:-40,y:90+i*70,st:0,el:null,s:0,u:0,i})});
+upd();
+const step=(a,t)=>{
+ const R=()=>a.el.getBoundingClientRect(),rel=()=>{a.sel.style.display='none';a.st=0};
+ if(a.st==0){
+  const q=tg.filter(e=>!e._c);
+  if(!q.length)return;
+  const e=q.find(inView);
+  if(e){e._c=1;a.el=e;a.st=1;a.s=t}
+  else{if(t-lastDir>700&&t-lastUser>2500){lastDir=t;scrollTo({top:scrollY+q[0].getBoundingClientRect().top-innerHeight*.28,behavior:'smooth'})}
+   a.x+=(innerWidth*(.25+.15*a.i)-a.x)*.03;a.y+=(innerHeight*.55-a.y)*.03}
+ }else if(a.st==1){
+  const r=R(),tx=r.left,ty=cl(r.top,10,innerHeight-30);a.x+=(tx-a.x)*.22;a.y+=(ty-a.y)*.22;
+  if(Math.hypot(tx-a.x,ty-a.y)<10||t-a.s>550){a.st=2;a.s=t}
+ }else if(a.st==2){
+  const r=R(),p=Math.min(1,(t-a.s)/300),e=ease(p),w=r.width*e,h=r.height*e;
+  box(a.sel,r.left,r.top,w,h);a.x=r.left+w;a.y=cl(r.top+h,10,innerHeight-30);
+  if(p>=1){reveal(a.el);a.s=t;a.u=t+a.el._n*a.el._d+175;a.st=3}
+ }else if(a.st==3){
+  const r=R();box(a.sel,r.left,r.top,r.width,r.height);
+  const c=a.el._k[Math.max(0,Math.min(a.el._k.length-1,Math.floor((t-a.s)/a.el._d)))];
+  if(c){const cr=c.getBoundingClientRect();a.x+=(cr.right-a.x)*.4;a.y+=(cl(cr.bottom,10,innerHeight-30)-a.y)*.4}
+  if(t>a.u)rel();
+ }
+};
+tour.onclick=()=>{if(done)return;paused=!paused;lab()};
+$('#rp').onclick=()=>{if(rm)return;tg.forEach(e=>{e.classList.remove('in');e._c=0});n=0;done=false;phase=0;t0=null;go=false;setTimeout(()=>go=true,400);ag.forEach(a=>{a.st=0;a.sel.style.display='none';a.cur.classList.remove('gone')});na.textContent='4 agents';upd();lastUser=0;scrollTo({top:0,behavior:'smooth'})};
+const cv=$('#fx'),cx=cv.getContext('2d');let W,H;const rs=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};rs();addEventListener('resize',rs);
+const P=Array.from({length:50},()=>({x:Math.random(),y:Math.random(),s:Math.random()*1.6+.4,v:Math.random()*.0006+.0002,p:Math.random()*6}));
+let col='#f0c36a',fr=0;const gi=$('#gi');
+const frame=t=>{
+ if(!paused&&!done){
+  if(phase==0){
+   if(go){if(t0==null)t0=t;const e=t-t0,Rr=Math.min(innerWidth,innerHeight)*.22+10*Math.sin(e/300);
+    ag.forEach(a=>{const g=a.i*Math.PI/2+e*.006;a.x+=(innerWidth/2+Rr*Math.cos(g)-a.x)*.12;a.y+=(innerHeight/2+Rr*Math.sin(g)-a.y)*.12});
+    if(e>1500)phase=1}
+  }else{
+   ag.forEach(a=>step(a,t));
+   if(n==tg.length&&ag.every(a=>a.st==0)){done=true;ag.forEach(a=>{a.cur.classList.add('gone');a.sel.style.display='none'});na.textContent='0 agents';lab()}
+  }
+  ag.forEach(a=>a.cur.style.transform='translate('+a.x+'px,'+a.y+'px)');
+ }
+ if(!(fr++%120))col=getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()||col;
+ cx.clearRect(0,0,W,H);cx.fillStyle=col;
+ P.forEach(q=>{q.y-=q.v*.25;if(q.y<0)q.y=1;cx.globalAlpha=.2+.8*Math.abs(Math.sin(t/900+q.p));const x=q.x*W,y=q.y*H;
+  if(q.s>1.5){cx.fillRect(x-q.s*3,y,q.s*6,1);cx.fillRect(x,y-q.s*3,1,q.s*6)}else cx.fillRect(x,y,q.s,q.s)});
+ gi.style.top=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*99)+'%';
+ requestAnimationFrame(frame)};
+if(!rm)requestAnimationFrame(frame);
+const tc=$('#tc'),t1=Date.now(),p2=v=>String(v).padStart(2,'0');
+setInterval(()=>{const ms=Date.now()-t1+2164000,s=ms/1000|0;tc.textContent=p2(s/3600|0)+':'+p2(s/60%60|0)+':'+p2(s%60)+':'+p2((ms%1000)/40|0)},40);
+const cyc=(sel,cls,ms)=>{const l=$$(sel);let i=0;setInterval(()=>{l.forEach((e,j)=>e.classList.toggle(cls,j==i));i=(i+1)%l.length},ms)};
+cyc('.roles>span','on',1700);cyc('.card','hot',2000);
+$$('[data-copy]').forEach(b=>b.onclick=async()=>{const o=b.textContent;try{await navigator.clipboard.writeText('play.unstablemc.net');b.textContent='Copied ✓'}catch(e){b.textContent='Select the IP and copy it'}setTimeout(()=>b.textContent=o,1800)});
+})();
+</script>
+</body>
+</html>
